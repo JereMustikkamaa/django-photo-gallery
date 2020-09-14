@@ -1,2 +1,5 @@
 # jkfc_project
-Projektiryhmän osallistujat: Jonne Saajos, Jere Mustikkamaa &amp; Jukka Virkkula.
+
+Group JKFC
+Topic: Kuvagalleria
+Participants: Jonne Saajos, Jere Mustikkamaa and Jukka Virkkula
