@@ -8,7 +8,7 @@ https://packaging.python.org/guides/installing-using-pip-and-virtual-environment
 #### On linux
     python3 -m venv venv
     
-### On windows
+#### On windows
     py -m venv env
 
 ## Aktivointi
