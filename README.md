@@ -5,17 +5,17 @@ Participants: Jonne Saajos, Jere Mustikkamaa and Jukka Virkkula
 https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
 
 ## Luominen
-### On linux
+#### On linux
     python3 -m venv venv
     
 ### On windows
     py -m venv env
 
 ## Aktivointi
-### On Linux
+#### On Linux
     cd projektikansio
     source venv/bin/activate
-### On Windows
+#### On Windows
     cd projektikansio
     .\venv\Scripts\activate
     
@@ -24,11 +24,11 @@ https://packaging.python.org/guides/installing-using-pip-and-virtual-environment
     (venv) pip freeze > requirements.txt
     
 ## Venvin uudelleenluominen
-### On linux
+#### On linux
     python3 -m venv venv
     source venv/bin/activate
     (venv) pip install -r requirements.txt
-### On windows
+#### On windows
     py -m venv env
     .\venv\Scripts\activate
     (venv) pip install -r requirements.txt
