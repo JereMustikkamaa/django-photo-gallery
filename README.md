@@ -37,3 +37,24 @@ https://packaging.python.org/guides/installing-using-pip-and-virtual-environment
 
 ## Projektin luonti
     django-admin startproject kuvagalleria
+    python manage.py migrate
+    python manage.py createsuperuser
+    python manage.py startapp <app>
+
+## Site mapping
+### `/`
+```
+Displays public photogallery page
+```
+### `/private/`
+```
+Displays user's private images
+```
+### `/private/<image_id>`
+```
+Displays user's private image photoview
+```
+### `/<image_id>/`
+```
+Displays photoview
+```
