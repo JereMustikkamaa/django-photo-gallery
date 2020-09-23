@@ -32,7 +32,7 @@ https://packaging.python.org/guides/installing-using-pip-and-virtual-environment
     (venv) pip install -r requirements.txt
 #### On windows
     py -m venv venv
-    .\venv\Scripts\activate
+    source venv/Scripts/activate
     (venv) pip install -r requirements.txt
 
 ## Projektin luonti
