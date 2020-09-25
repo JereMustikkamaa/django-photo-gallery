@@ -30,8 +30,12 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+CRISPY_TEMPLATE_PACK="bootstrap4"
+
 INSTALLED_APPS = [
+    'register.apps.RegisterConfig',
     'galleria.apps.GalleriaConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
