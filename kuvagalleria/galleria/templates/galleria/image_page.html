@@ -1,0 +1,18 @@
+{% extends 'galleria/main.html' %}
+{% load static %}
+
+{% block content %}
+    <img src={{image.imageURL}} class='image'/>
+    <div class='desc'>
+        {{image.id}}
+        {{image.title}}
+        {{image.private}}
+        {{image.views}}
+        {{image.date}}
+        {{image.rating}}
+    </div>
+    
+    <script>
+        console.log('{{image.imageURL}}')
+    </script>
+{% endblock content %}

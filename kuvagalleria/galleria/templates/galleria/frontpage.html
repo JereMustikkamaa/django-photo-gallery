@@ -2,19 +2,12 @@
 {% load static %}
 
 {% block content %}
-    {{testi}}
     <div class="photo-grid">
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
-        <div class="card" style="background-image:url({% static 'galleria/kissa.jpg' %})"></div>
+        {% for image in images %}
+            <a href="{% url 'imagepage' image.id %}">
+                <div class="card" style="background-image:url({{image.imageURL}})" ></div>
+            </a>
+        {% endfor %}
     </div>
+    
 {% endblock content %}

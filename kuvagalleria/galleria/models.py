@@ -13,6 +13,15 @@ class Image(models.Model):
     description = models.CharField(max_length=100, blank=True)
     # size
     # resolution
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+
+    
     def __str__(self):
         return self.title
     
