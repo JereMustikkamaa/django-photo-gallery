@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Image
 from .forms import ImageForm
-# from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -14,24 +14,33 @@ def imagepage(request, pk):
     context = {'image': image}
     return render(request, 'galleria/image_page.html', context)
 
-
+@login_required
 def profilepage(request, user):
     username = str(request.user).lower()
-    images = []
+
     if username != user.lower() or user.lower() == 'AnonymousUser'.lower():
         return redirect('/')
+
     images = Image.objects.filter(user=request.user)
-    form = ImageForm(request.POST, request.FILES)
+
+    context = {'images': images}
+
+    return render(request, 'galleria/profile_page.html', context)
+
+
+# @login_required
+def uploadpage(request):
+    form = ImageForm()
+    message = ''
     if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             print('form is valid')
             image = form.save(commit=False)
             image.user = request.user
             image.save()
+            message = 'Image uploaded'
 
-        else: 
-            print('form is not valid')
+    context = {'form': form, 'message': message}
 
-    context = {'images': images, 'form': form}
-
-    return render(request, 'galleria/profile_page.html', context)
+    return render(request, 'galleria/upload_page.html', context)

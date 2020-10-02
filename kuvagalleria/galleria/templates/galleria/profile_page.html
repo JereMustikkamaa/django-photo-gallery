@@ -1,23 +1,14 @@
 {% extends 'galleria/main.html' %}
 {% load static %}
-
 {% block content %}
     <div>
+        <h2>{{user}} - Profile page</h2>
         <div class="photo-grid">
             {% for image in images %}
                 <a href="{% url 'imagepage' image.id %}">
                     <div class="card" style="background-image:url({{image.imageURL}})" ></div>
                 </a>
             {% endfor %}
-        </div>
-        </div>
-        <div class='upload-form'>
-            <h3>Upload here</h3>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Upload</button>
-            </form>
         </div>
     </div>
 
