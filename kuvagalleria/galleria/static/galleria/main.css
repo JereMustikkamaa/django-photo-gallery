@@ -51,9 +51,8 @@ body {
 .photo-grid {
   display: grid;
   gap: 1rem;
-
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  grid-auto-rows: 240px;
+  grid-auto-rows: minmax(240px, 1fr);
 }
 
 @media screen and (min-width: 600px) {
@@ -72,4 +71,7 @@ body {
 .desc{
   display: flex;
   flex-direction: column;
+}
+.upload-form{
+  padding: 1em;
 }
