@@ -2,17 +2,27 @@
 {% load static %}
 
 {% block content %}
-    <img src={{image.imageURL}} class='image'/>
-    <div class='desc'>
-        {{image.id}}
-        {{image.title}}
-        {{image.private}}
-        {{image.views}}
-        {{image.date}}
-        {{image.rating}}
-    </div>
-    
-    <script>
-        console.log('{{image.imageURL}}')
-    </script>
+
+<div class="grid-container">
+    <div class="photo-item">Photo</div>
+    <div class="download-item">download links</div>
+    <div class="tag-item">tags</div>
+    <div class="details-item">description, views etc</div>
+    <div class="comment-item">comment-field</div>
+    <div class="vote-item">Vote</div>
+</div>
+
+<!-- <img src={{image.imageURL}} class='image' />
+<div class='desc'>
+    {{image.id}}
+    {{image.title}}
+    {{image.private}}
+    {{image.views}}
+    {{image.date}}
+    {{image.rating}}
+</div>
+
+<script>
+    console.log('{{image.imageURL}}')
+</script> -->
 {% endblock content %}
