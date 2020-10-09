@@ -4,6 +4,12 @@ from .forms import ImageForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def register(request):
+    return redirect('register/register/')
+
+def login(request):
+    return redirect('galleria/login.html')
+
 def index(request):
     images = Image.objects.filter(private=False)
     context = {'images': images}

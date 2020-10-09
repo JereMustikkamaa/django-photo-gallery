@@ -17,14 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from register import views as r
-from login.views import signin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('galleria.urls')),
-    path('register/', r.register_view, name="register"),
-    path('login/', signin, name="login"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

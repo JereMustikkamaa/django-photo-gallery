@@ -26,13 +26,51 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'galleria:upload' %}">Upload image</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'galleria:logout' %}">Sign out</a>
+                </li>
+                {% endif %}
             </li>
-        {% endif %}
-
-        {% block login %}
-
-        {% endblock login %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'galleria:register' %}">Sign up</a>
+            </li>
+            
         </ul>
+            <button onclick="document.getElementById('btn').style.display='block'" style="width:auto;">Login</button>
+
+<div id="btn" class="modal">
+        <span onclick="document.getElementById('btn').style.display='none'"
+    class="close" title="Close Modal">&times;</span>
+
+    <form class="modal-content animate" action="" method="post">
+        {% csrf_token %}
+      <div class="icontainer">
+	<span onclick="document.getElementById('btn').style.display='none'" class="close" title="Close window">&times;</span>
+      </div>
+      <div class="fcontainer">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="pwd"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="pwd" required>
+
+            <button type="submit">Login</button>
+        </div>
+        <div class="fcontainer" style="background-color:#4f4f4f">
+            <button type="button" onclick="document.getElementById('btn').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="pwd">Forgot <a href="">password?</a></span>
+        </div>
+    </form>
+</div>
+
+<script>
+    var modal = document.getElementById('btn');
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

@@ -1,9 +1,10 @@
 {% extends 'galleria/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block login %}
-<li class="nav-item active">
 <button onclick="document.getElementById('btn').style.display='block'" style="width:auto;">Login</button>
-</li>
+
 <div id="btn" class="modal">
         <span onclick="document.getElementById('btn').style.display='none'"
     class="close" title="Close Modal">&times;</span>
@@ -29,12 +30,12 @@
     </form>
 </div>
 
-    <script>
-        var modal = document.getElementById('btn');
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+<script>
+    var modal = document.getElementById('btn');
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
+    }
     </script>
 {% endblock login %}

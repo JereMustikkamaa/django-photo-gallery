@@ -1,6 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
-from login import views as login_views
+from register.views import register_view
+from login.views import signin, signout
+from django.contrib import admin
 
 app_name = 'galleria'
 
@@ -9,6 +11,8 @@ urlpatterns = [
     path('<int:pk>', views.imagepage, name='imagepage'),
     path('<str:user>', views.profilepage, name='profile'),
     path('upload/', views.uploadpage, name='upload'),
-    path('login/', login_views.login, name='login')
+    path('register/', register_view, name='register'),
+    path('login/', signin, name='login'),
+    path('logout/', signout, name='logout'),
 ]
 
