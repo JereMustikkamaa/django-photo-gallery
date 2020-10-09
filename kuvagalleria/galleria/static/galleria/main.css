@@ -51,7 +51,7 @@ body {
 .photo-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, .5fr));
   grid-auto-rows: minmax(240px, 1fr);
 }
 
@@ -74,4 +74,10 @@ body {
 }
 .upload-form{
   padding: 1em;
+}
+
+.upload-btn{
+  display: flex;
+  justify-content: flex-start;
+  padding: 2em;
 }

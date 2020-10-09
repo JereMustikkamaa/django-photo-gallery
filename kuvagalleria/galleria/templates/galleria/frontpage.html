@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-    <div class="photo-grid">
-        {% for image in images %}
-            <a href="{% url 'imagepage' image.id %}">
-                <div class="card" style="background-image:url({{image.imageURL}})" ></div>
-            </a>
-        {% endfor %}
-    </div>
-    
+<div class="photo-grid">
+    {% for image in images %}
+    <a href="{% url 'imagepage' image.id %}">
+        <div class="card" style="background-image:url({{image.thumbnailURL}})"></div>
+    </a>
+    {% endfor %}
+</div>
+
 {% endblock content %}

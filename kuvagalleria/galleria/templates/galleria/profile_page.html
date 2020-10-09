@@ -1,15 +1,57 @@
 {% extends 'galleria/main.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <div>
-        <h2>{{user}} - Profile page</h2>
-        <div class="photo-grid">
-            {% for image in images %}
-                <a href="{% url 'imagepage' image.id %}">
-                    <div class="card" style="background-image:url({{image.imageURL}})" ></div>
-                </a>
-            {% endfor %}
-        </div>
+<div>
+    <h2>{{user}} - Profile page</h2>
+
+    {% comment %} <div class='upload-btn'>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Upload image
+        </button>
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class='upload-form'>
+                        <h3>Upload an image</h3>
+                        <h4>{{message}}</h4>
+                        <form method="post" enctype="multipart/form-data" class='bootstrap4'>
+                            {% csrf_token %}
+                            {{ imageForm|crispy }}
+                            <button name='upload' type="submit">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+
+
+    {% for folder in folders %}
+    <h2>/{{folder}}</h2>
+    <div class="photo-grid">
+        {% for image in images %}
+        {% if image.subfolder == folder %}
+        <a href="{% url 'imagepage' image.id %}">
+            <div class="card" style="background-image:url({{image.thumbnailURL}})"></div>
+        </a>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+</div>
 
 {% endblock content %}
