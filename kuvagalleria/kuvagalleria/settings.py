@@ -30,9 +30,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-CRISPY_TEMPLATE_PACK="bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 INSTALLED_APPS = [
+    'login.apps.LoginConfig',
     'register.apps.RegisterConfig',
     'galleria.apps.GalleriaConfig',
     'crispy_forms',
