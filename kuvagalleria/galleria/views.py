@@ -5,13 +5,40 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
-    images = Image.objects.filter(private=False)
+    sortTerm = request.GET.get('sort', None)
+    if sortTerm == None:
+        images = Image.objects.filter(private=False)
+    else:
+        if sortTerm == 'views' or sortTerm == 'rating':
+            images = Image.objects.filter(private=False).order_by(sortTerm).reverse()
+        elif sortTerm == 'newest':
+            images = Image.objects.filter(private=False).order_by('date', 'time').reverse()
+        elif sortTerm == 'oldest':
+            images = Image.objects.filter(private=False).order_by('date','time')
+        else:
+            images = Image.objects.filter(private=False).order_by(sortTerm)
+
     context = {"images": images}
     return render(request, "galleria/frontpage.html", context)
 
 
 def imagepage(request, pk):
     image = get_object_or_404(Image, pk=pk)
+    if image.private == True:
+        print(image.user)
+        if image.user != request.user:
+            return redirect('/')
+    image.views = image.views + 1
+    image.save()
+    if request.method == "POST":
+        if 'delete' in request.POST:
+            if user_authorized(request, image.user.username):
+                image.delete()
+                return redirect('/')
+        if 'vote' in request.POST:
+            image.rating += 1
+            image.save()
+            print('vote')
     context = {"image": image}
     return render(request, "galleria/image_page.html", context)
 
@@ -19,20 +46,8 @@ def imagepage(request, pk):
 @login_required
 def profilepage(request, user):
     # Check if currently logged in user is the owner
-    username = str(request.user).lower()
-    if username != user.lower() or user.lower() == "AnonymousUser".lower():
+    if not user_authorized(request, user):
         return redirect("/")
-
-    # # Form
-    # imageForm = ImageForm()
-    # if request.method == "POST":
-    #     imageForm = ImageForm(request.POST, request.FILES)
-    #     if imageForm.is_valid():
-    #         print("form is valid")
-    #         image = imageForm.save(commit=False)
-    #         image.user = request.user
-    #         image.save()
-    #         return redirect("profile", request.user)
 
     # Get users pictures and subfolders
     images = Image.objects.filter(user=request.user).order_by('subfolder')
@@ -61,3 +76,14 @@ def uploadpage(request):
     context = {"form": imageForm}
 
     return render(request, "galleria/upload_page.html", context)
+
+def user_authorized(request, user):
+    username = str(request.user).lower()
+    print(username)
+    print(user)
+    if username != user.lower() or user.lower() == "AnonymousUser".lower():
+        print('not authorized')
+        return False
+    else:
+        print('authorized')
+        return True

@@ -2,7 +2,23 @@
 {% load static %}
 
 {% block content %}
-<div class="photo-grid">
+<div class='controls'>
+    <div onclick='openSort()' id='sort' class='sort-btn'><img src="{% static 'galleria/sort.png' %}" alt="">
+        <div class='sort-list' id='sort-list'>
+            Sort by:
+            <ul class='ul-sort'>
+                <li ><a href="?sort=title">Title</a></li>
+                <li><a href="?sort=newest">Newest</a></li>
+                <li><a href="?sort=oldest">Oldest</a></li>
+                <li><a href="?sort=rating">Rating</a></li>
+                <li><a href="?sort=views">Views</a></li>
+            </ul>
+        </div>
+    </div>
+    <div style='background-color: #000000;' id='grid' onclick='setGrid()' class='layout-btn'><img src="{% static 'galleria/grid_64_64.png' %}" alt=""></div>
+    <div id='vert' onclick='setVertical()' class='layout-btn'><img src="{% static 'galleria/vertical_64_64.png' %}" alt=""></div>
+</div>
+<div class="photo-grid" id='pg-frontpage'>
     {% for image in images %}
     <a href="{% url 'imagepage' image.id %}">
         <div class="card" style="background-image:url({{image.thumbnailURL}})"></div>

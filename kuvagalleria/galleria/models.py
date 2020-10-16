@@ -23,6 +23,7 @@ class Image(models.Model):
     rating = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
     description = models.CharField(max_length=100, blank=True)
     image = models.ImageField(upload_to=get_upload_path)
     full_hd = models.ImageField(upload_to=get_upload_path, null=True)
