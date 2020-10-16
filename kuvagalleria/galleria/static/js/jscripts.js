@@ -1,4 +1,3 @@
-
 const setVertical = () => {
     console.log('setverti')
     const element = document.getElementById('pg-frontpage')
@@ -24,3 +23,9 @@ const openSort = () => {
     }
 }
 
+const search = () => {
+    const searchTerm = document.getElementById('search-field').value
+    console.log(searchTerm)
+    let port = window.location.port === '80' ? '' : ':' + window.location.port
+    window.location = location.protocol + "//" + location.hostname + port + '/search/?search=' + searchTerm;
+}

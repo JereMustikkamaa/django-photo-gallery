@@ -21,6 +21,17 @@ def index(request):
     context = {"images": images}
     return render(request, "galleria/frontpage.html", context)
 
+def search(request):
+    searchTerm = request.GET.get('search', '')
+
+    print('searchterm', searchTerm)
+    if searchTerm == None:
+        images = Image.objects.filter(private=False)
+    else:
+        images = Image.objects.filter(private=False, title=searchTerm)
+
+    context = {"images": images}
+    return render(request, "galleria/search_page.html", context)
 
 def imagepage(request, pk):
     image = get_object_or_404(Image, pk=pk)
