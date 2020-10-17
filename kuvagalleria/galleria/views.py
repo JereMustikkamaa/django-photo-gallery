@@ -46,10 +46,11 @@ def imagepage(request, pk):
             if user_authorized(request, image.user.username):
                 image.delete()
                 return redirect('/')
-        if 'vote' in request.POST:
+        if 'vote' in request.POST or request.user.lower() == "AnonymousUser".lower():
+            if image.user == request.user:
+                return redirect("imagepage", image.id)
             image.rating += 1
             image.save()
-            print('vote')
     context = {"image": image}
     return render(request, "galleria/image_page.html", context)
 
