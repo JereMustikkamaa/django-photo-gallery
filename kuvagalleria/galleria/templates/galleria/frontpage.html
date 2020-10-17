@@ -20,9 +20,27 @@
 </div>
 <div class="photo-grid" id='pg-frontpage'>
     {% for image in images %}
-    <a href="{% url 'imagepage' image.id %}">
-        <div class="card" style="background-image:url({{image.thumbnailURL}})"></div>
-    </a>
+        {% if not image.full_hd %}
+            <div class="card" style="background-image:url({{image.thumbnailURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% elif image.aspect_ratio > 1.9 %}
+            <div class="card card-wide wide-card" style="background-image:url({{image.fullhdURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% elif image.aspect_ratio < 1.5 %}
+            <div class="card card-tall tall-card" style="background-image:url({{image.fullhdURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% else %}
+            <div class="card card-wide card-tall big-card" style="background-image:url({{image.fullhdURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% endif %}
     {% endfor %}
 </div>
 

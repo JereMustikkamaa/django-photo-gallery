@@ -28,7 +28,7 @@ def search(request):
     if searchTerm == None:
         images = Image.objects.filter(private=False)
     else:
-        images = Image.objects.filter(private=False, title=searchTerm)
+        images = Image.objects.filter(private=False, title__contains=searchTerm)
 
     context = {"images": images}
     return render(request, "galleria/search_page.html", context)
