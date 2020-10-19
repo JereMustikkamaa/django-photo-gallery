@@ -2,17 +2,28 @@
 {% load static %}
 
 {% block content %}
-    <img src={{image.imageURL}} class='image'/>
-    <div class='desc'>
-        {{image.id}}
-        {{image.title}}
-        {{image.private}}
-        {{image.views}}
-        {{image.date}}
-        {{image.rating}}
+
+{% comment %} Laita tää johonkii järkevää paikkaa => poistaa kuvan ja näkyy vaa kuvan lisääjälle {% endcomment %}
+{% if user.username == image.user.username%}
+<form method="post">{% csrf_token %}<button name='delete' class='delete-btn' type="submit">Poista</button></form>
+{% endif %}
+
+
+<div class="grid-container">
+    <div class="photo-item"><img src={{image.imageURL}} class='photo-item-image' /></div>
+    <div class="download-item">download links</div>
+    <div class="tag-item">tags</div>
+    <div class="details-item">Name: {{image.title}} <br> Upload Date: {{image.date}}</div>
+    <div class="comment-item">comment-field</div>
+    <div class="vote-item">
+        <form method='post' >{% csrf_token %}
+            <button name='vote' type='submit' class='no-styling'>
+                <img  class='hover' src="{% static 'galleria/thumbs_up.png' %}" alt="">
+            </button>
+        </form>
+        
+        Upvotes: {{image.rating}}
     </div>
-    
-    <script>
-        console.log('{{image.imageURL}}')
-    </script>
+</div>
+
 {% endblock content %}

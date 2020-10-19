@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<<<<<<< HEAD
     <div class="photo-grid">
         {% for image in images %}
             <a href="{% url 'galleria:imagepage' image.id %}">
@@ -9,4 +10,48 @@
             </a>
             {% endfor %}
         </div>
+=======
+<div class='controls'>
+    <div onclick='openSort()' id='sort' class='sort-btn'><img src="{% static 'galleria/sort.png' %}" alt="">
+        <div class='sort-list' id='sort-list'>
+            Sort by:
+            <ul class='ul-sort'>
+                <li ><a href="?sort=title">Title</a></li>
+                <li><a href="?sort=newest">Newest</a></li>
+                <li><a href="?sort=oldest">Oldest</a></li>
+                <li><a href="?sort=rating">Rating</a></li>
+                <li><a href="?sort=views">Views</a></li>
+            </ul>
+        </div>
+    </div>
+    <div style='background-color: #000000;' id='grid' onclick='setGrid()' class='layout-btn'><img src="{% static 'galleria/grid_64_64.png' %}" alt=""></div>
+    <div id='vert' onclick='setVertical()' class='layout-btn'><img src="{% static 'galleria/vertical_64_64.png' %}" alt=""></div>
+</div>
+<div class="photo-grid" id='pg-frontpage'>
+    {% for image in images %}
+        {% if not image.full_hd %}
+            <div class="card" style="background-image:url({{image.thumbnailURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% elif image.aspect_ratio > 1.9 %}
+            <div class="card card-wide wide-card" style="background-image:url({{image.fullhdURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% elif image.aspect_ratio < 1.5 %}
+            <div class="card card-tall tall-card" style="background-image:url({{image.fullhdURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% else %}
+            <div class="card card-wide card-tall big-card" style="background-image:url({{image.fullhdURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+>>>>>>> 7450142d4cac1a3773b14a554d72f204ddc43300
 {% endblock content %}

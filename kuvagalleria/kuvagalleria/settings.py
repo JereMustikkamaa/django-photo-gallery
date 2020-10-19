@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '_nq$h44iz&rfx_r^3$y_71#s&2w)2t!f42iq67ypw+l6(9c1qg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['137.135.212.210','djangoproject.localhost']
 
 
 # Application definition
@@ -33,8 +33,12 @@ ALLOWED_HOSTS = []
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
     # my apps
     'login.apps.LoginConfig',
+=======
+    'django_cleanup.apps.CleanupConfig',
+>>>>>>> 7450142d4cac1a3773b14a554d72f204ddc43300
     'register.apps.RegisterConfig',
     'galleria.apps.GalleriaConfig',
     # pypi plugins
@@ -128,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
