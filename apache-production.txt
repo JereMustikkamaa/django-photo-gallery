@@ -36,7 +36,7 @@ apache-site.conf
         <Directory /home/jermu/projekti/jkfc_project/kuvagalleria/media>
                 Require all granted
         </Directory>
-        # Next, add the following directory block
+
         <Directory /home/jermu/projekti/jkfc_project/kuvagalleria/kuvagalleria>
                 <Files wsgi.py>
                         Require all granted

@@ -2,12 +2,14 @@
 {% load static %}
 
 {% block content %}
+<h2>Search results</h2>
 <div class="photo-grid" id='pg-frontpage'>
     {% if images|length != 0 %}
     {% for image in images %}
-        <a href="{% url 'imagepage' image.id %}">
-            <div class="card" style="background-image:url({{image.thumbnailURL}})"></div>
-        </a>
+            <div class="card" style="background-image:url({{image.thumbnailURL}})">
+                <strong>{{image.title}}</strong>
+                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            </div>
     {% endfor %}
     {% else %}
     <div>Ei hakutuloksia</div>

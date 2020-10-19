@@ -24,7 +24,7 @@ def index(request):
 def search(request):
     searchTerm = request.GET.get('search', '')
 
-    print('searchterm', searchTerm)
+    # print('searchterm', searchTerm)
     if searchTerm == None:
         images = Image.objects.filter(private=False)
     else:
@@ -64,11 +64,15 @@ def profilepage(request, user):
     # Get users pictures and subfolders
     images = Image.objects.filter(user=request.user).order_by('subfolder')
     folders = []
+    likes = 0
+    views = 0
     for x in images:
+        likes += x.rating
+        views += x.views
         if x.subfolder not in folders:
             folders.append(x.subfolder)
     print(folders)
-    context = {"images": images, "folders": folders}
+    context = {"images": images, "folders": folders, 'likes': likes, 'views': views}
 
     return render(request, "galleria/profile_page.html", context)
 
