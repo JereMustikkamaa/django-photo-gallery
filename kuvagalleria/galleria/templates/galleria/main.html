@@ -14,7 +14,6 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<<<<<<< HEAD
     <a class="navbar-brand" href="{% url 'galleria:index' %}">KuvaGalleria</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -44,75 +43,12 @@
             </li>
             
         </ul>
-        
-<!--             <button onclick="document.getElementById('btn').style.display='block'" style="width:auto;">Login</button>
-
-<div id="btn" class="modal">
-        <span onclick="document.getElementById('btn').style.display='none'"
-    class="close" title="Close Modal">&times;</span>
-
-    <form class="modal-content animate" action="" method="post">
-        {% csrf_token %}
-      <div class="icontainer">
-	<span onclick="document.getElementById('btn').style.display='none'" class="close" title="Close window">&times;</span>
-      </div>
-      <div class="fcontainer">
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-
-            <label for="pwd"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="pwd" required>
-
-            <button type="submit">Login</button>
-        </div>
-        <div class="fcontainer" style="background-color:#4f4f4f">
-            <button type="button" onclick="document.getElementById('btn').style.display='none'" class="cancelbtn">Cancel</button>
-            <span class="pwd">Forgot <a href="">password?</a></span>
-        </div>
-    </form>
-</div>
-
-<script>
-    var modal = document.getElementById('btn');
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    </script> -->
 
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
-=======
-        <a class="navbar-brand" href="{% url 'index' %}">KuvaGalleria</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'index' %}">Galleria <span class="sr-only">(current)</span></a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'profile' user %}">Profile</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'upload' %}">Upload image</a>
-                </li>
-                {% endif %}
-            </ul>
-            <div class="form-inline my-2 my-lg-0">
-                <input id='search-field' class="form-control mr-sm-2" type="search" placeholder="Search by title" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" onclick="search()">Search</button>
-            </div>
-        </div>
->>>>>>> 7450142d4cac1a3773b14a554d72f204ddc43300
     </nav>
     <div class="container">
         {% block content %}

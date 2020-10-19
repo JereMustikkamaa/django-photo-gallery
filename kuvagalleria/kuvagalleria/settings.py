@@ -33,16 +33,11 @@ ALLOWED_HOSTS = ['137.135.212.210','djangoproject.localhost']
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
     # my apps
     'login.apps.LoginConfig',
-=======
-    'django_cleanup.apps.CleanupConfig',
->>>>>>> 7450142d4cac1a3773b14a554d72f204ddc43300
     'register.apps.RegisterConfig',
     'galleria.apps.GalleriaConfig',
     # pypi plugins
-    'bootstrap_modal_forms',
     'crispy_forms',
     # django apps
     'django.contrib.admin',
