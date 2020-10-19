@@ -23,11 +23,12 @@ class Image(models.Model):
     rating = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
     description = models.CharField(max_length=100, blank=True)
     image = models.ImageField(upload_to=get_upload_path)
     full_hd = models.ImageField(upload_to=get_upload_path, null=True)
     thumbnail = models.ImageField(upload_to=get_upload_path, editable=False)
-
+    aspect_ratio = models.FloatField()
     def save(self, *args, **kwargs):
 
         if not self.thumbnail:
@@ -41,7 +42,7 @@ class Image(models.Model):
     def check_if_full_hd(self):
         im_size = pillowImage.open(self.image)
         width, height = im_size.size
-        if width <= 1920 or height <= 1080:
+        if width <= 1080 or height <= 1080:
             print('Image resolution less than or the same as full hd')
             return False
         else:
@@ -73,6 +74,12 @@ class Image(models.Model):
 
         file, ext = os.path.splitext(self.image.name)
         im = pillowImage.open(self.image)
+
+        # save image aspect ratio
+        width, height = im.size
+        aspect_ratio = width/height
+        self.aspect_ratio = aspect_ratio
+
         im.thumbnail((500,500), pillowImage.ANTIALIAS)
         ext = ext.lower()
         
@@ -90,6 +97,14 @@ class Image(models.Model):
         self.thumbnail.save(file+"_thumbnail"+ext, ContentFile(buf.read()))
         buf.close()
         return
+
+    @property
+    def fullhdURL(self):
+        try:
+            url = self.full_hd.url
+        except:
+            url = ""
+        return url
 
     @property
     def thumbnailURL(self):

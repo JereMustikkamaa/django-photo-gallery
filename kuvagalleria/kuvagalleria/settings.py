@@ -25,17 +25,22 @@ SECRET_KEY = '_nq$h44iz&rfx_r^3$y_71#s&2w)2t!f42iq67ypw+l6(9c1qg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['137.135.212.210','djangoproject.localhost']
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
-CRISPY_TEMPLATE_PACK="bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 INSTALLED_APPS = [
+    # my apps
+    'login.apps.LoginConfig',
     'register.apps.RegisterConfig',
     'galleria.apps.GalleriaConfig',
+    # pypi plugins
     'crispy_forms',
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,6 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'login/login/'

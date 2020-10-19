@@ -41,20 +41,24 @@ https://packaging.python.org/guides/installing-using-pip-and-virtual-environment
     python manage.py createsuperuser
     python manage.py startapp <app>
 
-## Site mapping
+## Site map
 ### `/`
 ```
 Displays public photogallery page
 ```
-### `/private/`
+### `/upload`
 ```
-Displays user's private images
+Image upload page
 ```
-### `/private/<image_id>`
+### `/search/?search=<search-term>`
 ```
-Displays user's private image photoview
+Searches images by title
 ```
-### `/<image_id>/`
+### `/profile/<username>`
+```
+Displays all user's images
+```
+### `images/<image_id>/`
 ```
 Displays photoview
 ```

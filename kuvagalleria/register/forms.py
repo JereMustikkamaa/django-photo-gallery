@@ -1,6 +1,4 @@
 from django import forms
-from django.db import models
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
@@ -53,7 +51,10 @@ class RegisterForm(forms.Form):
         return password_confirm
 
     def save(self, commit=True):
-        user = User.objects.create_user(self.cleaned_data['username'],
-                                        self.cleaned_data['email'],
-                                        self.cleaned_data['password'])
+        user = User.objects.create_user(
+            self.cleaned_data['username'],
+            email=self.cleaned_data['email'],
+            password=self.cleaned_data['password'],
+            first_name=self.cleaned_data['first_name'],
+            last_name=self.cleaned_data['last_name'])
         return user
