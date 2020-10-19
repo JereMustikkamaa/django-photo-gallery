@@ -1,0 +1,17 @@
+{% extends "galleria/main.html" %}
+
+{% block title %}Sign in{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="POST" class="bootstrap4">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <label for="username">Username:</label>
+  <input type="text" name="username" placeholder="Username">
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" placeholder="Password">
+  <button type="submit" class="btn btn-success">Login</button>
+</form>
+{% endblock %}

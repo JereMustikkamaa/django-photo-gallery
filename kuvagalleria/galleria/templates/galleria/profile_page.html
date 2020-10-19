@@ -19,7 +19,7 @@
         {% for image in images %}
         {% if image.subfolder == folder %}
         <div class="card" style="background-image:url({{image.thumbnailURL}})">
-            <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+            <a class='image-link' href="{% url 'galleria:imagepage' image.id %}"></a>
         </div>
         {% endif %}
 

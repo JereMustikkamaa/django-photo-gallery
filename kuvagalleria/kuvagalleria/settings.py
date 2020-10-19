@@ -31,13 +31,16 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-CRISPY_TEMPLATE_PACK="bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 INSTALLED_APPS = [
-    'django_cleanup.apps.CleanupConfig',
+    # my apps
+    'login.apps.LoginConfig',
     'register.apps.RegisterConfig',
     'galleria.apps.GalleriaConfig',
+    # pypi plugins
     'crispy_forms',
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,3 +131,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'login/login/'

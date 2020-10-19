@@ -4,6 +4,12 @@ from .forms import ImageForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def register(request):
+    return redirect('register/register/')
+
+def login(request):
+    return redirect('login/login/')
+
 def index(request):
     sortTerm = request.GET.get('sort', None)
     if sortTerm == None:
@@ -48,7 +54,7 @@ def imagepage(request, pk):
                 return redirect('/')
         if 'vote' in request.POST or request.user.lower() == "AnonymousUser".lower():
             if image.user == request.user:
-                return redirect("imagepage", image.id)
+                return redirect("galleria:imagepage", image.id)
             image.rating += 1
             image.save()
     context = {"image": image}
@@ -87,7 +93,7 @@ def uploadpage(request):
             image = imageForm.save(commit=False)
             image.user = request.user
             image.save()
-            return redirect("profile", request.user)
+            return redirect("galleria:profile", request.user)
 
     context = {"form": imageForm}
 
