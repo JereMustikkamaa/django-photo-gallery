@@ -3,6 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import LoginForm
+from register.forms import forms
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 
 # Create your views here.
 
@@ -12,23 +16,20 @@ def home_view(request):
 
 
 def signin(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request=request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                login(request, username)
-                messages.info(request, f"You are logged in as {username}")
-                return redirect('/')
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request,user)
+                return HttpResponseRedirect('/')
             else:
-                messages.info(request, "Username OR password is incorrect")
-    form = AuthenticationForm()
-    context = {}
-    return render(request, 'galleria/login.html', context)
-
+                return HttpResponse("Your account was inactive.")
+        else:
+            return HttpResponse("Invalid username or password.")
+    else:
+        return render(request, 'login/login.html', {})
 
 def signout(request):
     logout(request)

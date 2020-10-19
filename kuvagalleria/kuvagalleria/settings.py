@@ -33,10 +33,14 @@ ALLOWED_HOSTS = []
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 INSTALLED_APPS = [
+    # my apps
     'login.apps.LoginConfig',
     'register.apps.RegisterConfig',
     'galleria.apps.GalleriaConfig',
+    # pypi plugins
+    'bootstrap_modal_forms',
     'crispy_forms',
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,3 +131,5 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'login/login/'

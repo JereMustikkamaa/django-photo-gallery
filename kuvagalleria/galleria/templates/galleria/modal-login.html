@@ -1,0 +1,44 @@
+
+            <!-- NOT IN USE -->
+            <!-- NOT IN USE -->
+            <!-- NOT IN USE -->
+
+{% extends 'galleria/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<button onclick="document.getElementById('btn').style.display='block'" style="width:auto;">Login</button>
+
+<div id="btn" class="modal">
+        <span onclick="document.getElementById('btn').style.display='none'"
+    class="close" title="Close Modal">&times;</span>
+
+    <form class="modal-content animate" action="" method="post">
+        {% csrf_token %}
+      <div class="icontainer">
+	<span onclick="document.getElementById('btn').style.display='none'" class="close" title="Close window">&times;</span>
+      </div>
+      <div class="fcontainer">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="pwd"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="pwd" required>
+
+            <button type="submit">Login</button>
+        </div>
+        <div class="fcontainer" style="background-color:#4f4f4f">
+            <button type="button" onclick="document.getElementById('btn').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="pwd">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+</div>
+
+<script>
+    var modal = document.getElementById('btn');
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>

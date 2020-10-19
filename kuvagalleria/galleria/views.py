@@ -8,7 +8,7 @@ def register(request):
     return redirect('register/register/')
 
 def login(request):
-    return redirect('galleria/login.html')
+    return redirect('login/login/')
 
 def index(request):
     images = Image.objects.filter(private=False)
