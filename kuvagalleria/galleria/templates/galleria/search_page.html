@@ -8,7 +8,7 @@
     {% for image in images %}
             <div class="card" style="background-image:url({{image.thumbnailURL}})">
                 <strong>{{image.title}}</strong>
-                <a class='image-link' href="{% url 'imagepage' image.id %}"></a>
+                <a class='image-link' href="{% url 'galleria:imagepage' image.id %}"></a>
             </div>
     {% endfor %}
     {% else %}

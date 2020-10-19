@@ -37,7 +37,7 @@ body {
 }
 
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1200px) {
 	.card-tall {
 		grid-row: span 2 / auto;
 	}
