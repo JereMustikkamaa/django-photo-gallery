@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 
 
 class RegisterForm(forms.Form):
@@ -19,7 +20,10 @@ class RegisterForm(forms.Form):
         help_text='Required. Inform a valid email address.',
         label='Enter email')
     password = forms.CharField(label='Enter password',
-                               widget=forms.PasswordInput())
+                               widget=forms.PasswordInput(),
+                               validators=[RegexValidator('[\w]{8,30}')],
+                               help_text="""Password must contain a minimum of 8 and a maximum of 30 characters.
+                                            Password can contain any character from a-z and any number.""")
     password_confirm = forms.CharField(label='Confirm password',
                                        widget=forms.PasswordInput)
 
