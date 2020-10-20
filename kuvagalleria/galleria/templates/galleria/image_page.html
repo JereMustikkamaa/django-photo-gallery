@@ -21,12 +21,12 @@
     
 
     <div class="vote-item">
-        {% if user == image.user or user == 'AnonymousUser' or not user.is_authenticated  %}
-            <img  class='' src="{% static 'galleria/thumbs_up.png' %}" alt="">
+        {% if user == image.user or not user.is_authenticated  %}
+            <img src="{% static 'galleria/thumbs_up.png' %}">
         {% else %}
             <form method='post' >{% csrf_token %}
                 <button name='vote' type='submit' class='no-styling'>
-                    <img  class='hover' src="{% static 'galleria/thumbs_up.png' %}" alt="">
+                    <img  class='hover' src="{% static 'galleria/thumbs_up.png' %}" >
                 </button>
             </form>
         {% endif %}

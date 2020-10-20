@@ -11,10 +11,6 @@ def get_upload_path(instance, filename):
     return "%s/%s/%s" % (instance.user, instance.subfolder, filename)
 
 
-def get_thumbnail_path(instance, filename):
-    return "%s/%s/%s" % (instance.user, instance.subfolder, "thumbnail_" + filename)
-
-
 class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     subfolder = models.CharField(max_length=20, blank=True)
@@ -42,7 +38,7 @@ class Image(models.Model):
     def check_if_full_hd(self):
         im_size = pillowImage.open(self.image)
         width, height = im_size.size
-        if width <= 1080 or height <= 1080:
+        if width <= 1920 or height <= 1080:
             return False
         else:
             return True

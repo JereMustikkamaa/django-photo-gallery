@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 INSTALLED_APPS = [
+    'django_cleanup.apps.CleanupConfig',
     # my apps
     'login.apps.LoginConfig',
     'register.apps.RegisterConfig',
