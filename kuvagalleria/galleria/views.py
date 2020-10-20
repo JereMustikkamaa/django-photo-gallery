@@ -52,11 +52,13 @@ def imagepage(request, pk):
             if user_authorized(request, image.user.username):
                 image.delete()
                 return redirect('/')
-        if 'vote' in request.POST or request.user.lower() == "AnonymousUser".lower():
-            if image.user == request.user:
+        if 'vote' in request.POST:
+            if image.user == request.user or request.user == "AnonymousUser":
+                print('not allowed')
                 return redirect("galleria:imagepage", image.id)
-            image.rating += 1
-            image.save()
+            else: 
+                image.rating += 1
+                image.save()
     context = {"image": image}
     return render(request, "galleria/image_page.html", context)
 
@@ -103,7 +105,7 @@ def user_authorized(request, user):
     username = str(request.user).lower()
     print(username)
     print(user)
-    if username != user.lower() or user.lower() == "AnonymousUser".lower():
+    if username.lower() != user.lower() or username.lower() == "AnonymousUser".lower():
         print('not authorized')
         return False
     else:

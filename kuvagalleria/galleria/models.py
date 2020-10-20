@@ -43,7 +43,6 @@ class Image(models.Model):
         im_size = pillowImage.open(self.image)
         width, height = im_size.size
         if width <= 1080 or height <= 1080:
-            print('Image resolution less than or the same as full hd')
             return False
         else:
             return True

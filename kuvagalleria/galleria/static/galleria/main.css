@@ -204,6 +204,7 @@ span.pwd {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
   }
   .tag-item {
 	grid-area: tags;
@@ -234,7 +235,7 @@ span.pwd {
 	  
 	  grid-template-areas: 
 	  'photo download '
-	  'photo . '
+	  'photo download '
 	  'details vote '
 	  '. . ';
 	  grid-gap: 10px;
