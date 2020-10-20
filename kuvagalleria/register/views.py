@@ -14,7 +14,6 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Account created successfully')
             return redirect("/")
     else:
         form = RegisterForm()
