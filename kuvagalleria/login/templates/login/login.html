@@ -14,4 +14,11 @@
   <input type="password" name="password" placeholder="Password">
   <button type="submit" class="btn btn-success">Login</button>
 </form>
+{% for message in messages %}
+<div class="alert alert-danger">
+  <a class="close" href="#" data-dismiss="alert">x</a>
+
+  {{ message }}
+</div>
+{% endfor %}
 {% endblock %}

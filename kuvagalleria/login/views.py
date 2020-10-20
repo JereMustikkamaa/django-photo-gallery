@@ -25,13 +25,14 @@ def signin(request):
                 login(request,user)
                 return HttpResponseRedirect('/')
             else:
-                return HttpResponse("Your account was inactive.")
+                messages.error(request,"Your account was inactive.")
+                return redirect('/login/')
         else:
-            return HttpResponse("Invalid username or password.")
+            messages.error(request,"Invalid username or password.")
+            return redirect('/login/')
     else:
         return render(request, 'login/login.html', {})
 
 def signout(request):
     logout(request)
-    messages.info(request, "Logged out!")
     return redirect('/')
